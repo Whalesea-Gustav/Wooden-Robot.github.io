@@ -1,0 +1,948 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Python,爬虫,Scrapy," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="woodenrobot" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="http://7xraal.com1.z0.glb.clouddn.com/avatar.jpg?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Scrapy爬虫框架教程（一）– Scrapy入门Scrapy爬虫框架教程（二）– 爬取豆瓣电影TOP250Scrapy爬虫框架教程（三）– 调试(Debugging)Spiders 前言前一段时间工作太忙一直没有时间继续更新这个教程，最近离职了趁着这段时间充裕赶紧多写点东西。之前我们已经简单了解了对普通网页的抓取，今天我就给大家讲一讲怎么去抓取采用Ajax异步加的网站。">
+<meta name="keywords" content="Python,爬虫,Scrapy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scrapy爬虫框架教程（四）-- 抓取AJAX异步加载网页">
+<meta property="og:url" content="http://woodenrobot.me/2017/04/09/Scrapy爬虫框架教程（四）-抓取AJAX异步加载网页/index.html">
+<meta property="og:site_name" content="woodenrobot">
+<meta property="og:description" content="Scrapy爬虫框架教程（一）– Scrapy入门Scrapy爬虫框架教程（二）– 爬取豆瓣电影TOP250Scrapy爬虫框架教程（三）– 调试(Debugging)Spiders 前言前一段时间工作太忙一直没有时间继续更新这个教程，最近离职了趁着这段时间充裕赶紧多写点东西。之前我们已经简单了解了对普通网页的抓取，今天我就给大家讲一讲怎么去抓取采用Ajax异步加的网站。">
+<meta property="og:image" content="http://7xraal.com1.z0.glb.clouddn.com/Scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89--%20%E6%8A%93%E5%8F%96AJAX%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E7%BD%91%E9%A1%B51.1.png">
+<meta property="og:image" content="http://7xraal.com1.z0.glb.clouddn.com/Scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89--%20%E6%8A%93%E5%8F%96AJAX%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E7%BD%91%E9%A1%B52.png">
+<meta property="og:image" content="http://7xraal.com1.z0.glb.clouddn.com/Scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89--%20%E6%8A%93%E5%8F%96AJAX%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E7%BD%91%E9%A1%B53.png">
+<meta property="og:image" content="http://7xraal.com1.z0.glb.clouddn.com/Scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89--%20%E6%8A%93%E5%8F%96AJAX%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E7%BD%91%E9%A1%B54.png">
+<meta property="og:image" content="http://7xraal.com1.z0.glb.clouddn.com/Scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89--%20%E6%8A%93%E5%8F%96AJAX%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E7%BD%91%E9%A1%B55.png">
+<meta property="og:image" content="http://7xraal.com1.z0.glb.clouddn.com/Scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89--%20%E6%8A%93%E5%8F%96AJAX%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E7%BD%91%E9%A1%B56.png">
+<meta property="og:image" content="http://7xraal.com1.z0.glb.clouddn.com/Scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89--%20%E6%8A%93%E5%8F%96AJAX%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E7%BD%91%E9%A1%B57.png">
+<meta property="og:updated_time" content="2017-04-09T07:48:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Scrapy爬虫框架教程（四）-- 抓取AJAX异步加载网页">
+<meta name="twitter:description" content="Scrapy爬虫框架教程（一）– Scrapy入门Scrapy爬虫框架教程（二）– 爬取豆瓣电影TOP250Scrapy爬虫框架教程（三）– 调试(Debugging)Spiders 前言前一段时间工作太忙一直没有时间继续更新这个教程，最近离职了趁着这段时间充裕赶紧多写点东西。之前我们已经简单了解了对普通网页的抓取，今天我就给大家讲一讲怎么去抓取采用Ajax异步加的网站。">
+<meta name="twitter:image" content="http://7xraal.com1.z0.glb.clouddn.com/Scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89--%20%E6%8A%93%E5%8F%96AJAX%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E7%BD%91%E9%A1%B51.1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://woodenrobot.me/2017/04/09/Scrapy爬虫框架教程（四）-抓取AJAX异步加载网页/"/>
+
+
+
+
+
+  <title>Scrapy爬虫框架教程（四）-- 抓取AJAX异步加载网页 | woodenrobot</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-85052923-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f6877c80d4354214ca22c266ee5fbdcf";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">woodenrobot</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'VoiY4z5j6Jqgx1Gfw2Xj','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://woodenrobot.me/2017/04/09/Scrapy爬虫框架教程（四）-抓取AJAX异步加载网页/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="woodenrobot">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://7xraal.com1.z0.glb.clouddn.com/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="woodenrobot">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Scrapy爬虫框架教程（四）-- 抓取AJAX异步加载网页</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-09T15:47:26+08:00">
+                2017-04-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/04/09/Scrapy爬虫框架教程（四）-抓取AJAX异步加载网页/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://zhuanlan.zhihu.com/p/24669128?group_id=834424262096994304" target="_blank" rel="external">Scrapy爬虫框架教程（一）– Scrapy入门</a><br><a href="https://zhuanlan.zhihu.com/p/24769534" target="_blank" rel="external">Scrapy爬虫框架教程（二）– 爬取豆瓣电影TOP250</a><br><a href="https://zhuanlan.zhihu.com/p/25200262" target="_blank" rel="external">Scrapy爬虫框架教程（三）– 调试(Debugging)Spiders</a></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前一段时间工作太忙一直没有时间继续更新这个教程，最近离职了趁着这段时间充裕赶紧多写点东西。之前我们已经简单了解了对普通网页的抓取，今天我就给大家讲一讲怎么去抓取采用Ajax异步加的网站。</p>
+<a id="more"></a>
+<h1 id="工具和环境"><a href="#工具和环境" class="headerlink" title="工具和环境"></a>工具和环境</h1><ol>
+<li>语言：python 2.7</li>
+<li>IDE： Pycharm</li>
+<li>浏览器：Chrome</li>
+<li>爬虫框架：Scrapy 1.3.3</li>
+</ol>
+<h1 id="什么是AJAX"><a href="#什么是AJAX" class="headerlink" title="什么是AJAX?"></a>什么是AJAX?</h1><blockquote>
+<p>AJAX即“Asynchronous Javascript And XML”（异步JavaScript和XML），是指一种创建交互式网页应用的网页开发技术。  </p>
+<p>AJAX = 异步 JavaScript和XML（标准通用标记语言的子集）。  </p>
+<p>AJAX 是一种用于创建快速动态网页的技术。  </p>
+<p>通过在后台与服务器进行少量数据交换，AJAX 可以使网页实现异步更新。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。</p>
+</blockquote>
+<h1 id="两个Chrome插件"><a href="#两个Chrome插件" class="headerlink" title="两个Chrome插件"></a>两个Chrome插件</h1><h2 id="Toggle-JavaScript"><a href="#Toggle-JavaScript" class="headerlink" title="Toggle JavaScript"></a>Toggle JavaScript</h2><p>这个插件可以帮助我们快速直观地检测网页里哪些信息是通过AJAX异步加载而来的，具体怎么用，下面会详细讲解。<br>chrome商店下载地址：<a href="https://chrome.google.com/webstore/detail/toggle-javascript/cidlcjdalomndpeagkjpnefhljffbnlo?utm_source=chrome-app-launcher-info-dialog" target="_blank" rel="external">https://chrome.google.com/webstore/detail/toggle-javascript/cidlcjdalomndpeagkjpnefhljffbnlo?utm_source=chrome-app-launcher-info-dialog</a>(Ps:打不的小伙伴自行百度搜索国内提供chrome插件下载的网站离线安装)</p>
+<h2 id="JSON-handle"><a href="#JSON-handle" class="headerlink" title="JSON-handle"></a>JSON-handle</h2><p>这个插件可以帮我们格式化Json串,从而让我们以一个更友好的方式查看Json内的信息。<br>chrome商店下载地址：<a href="https://chrome.google.com/webstore/detail/json-handle/iahnhfdhidomcpggpaimmmahffihkfnj" target="_blank" rel="external">https://chrome.google.com/webstore/detail/json-handle/iahnhfdhidomcpggpaimmmahffihkfnj</a>(Ps:打不的小伙伴自行百度搜索国内提供chrome插件下载的网站离线安装)</p>
+<h1 id="分析过程"><a href="#分析过程" class="headerlink" title="分析过程"></a>分析过程</h1><h2 id="分析页面是否采用AJAX"><a href="#分析页面是否采用AJAX" class="headerlink" title="分析页面是否采用AJAX"></a>分析页面是否采用AJAX</h2><p>上次我们拿了豆瓣当做例子，刚好我发现了豆瓣有AJAX异步加载的页面，这次我们就不换了，还拿豆瓣做例子。（逃<br>首先我们打<a href="https://movie.douban.com/typerank?type_name=%E5%8A%A8%E4%BD%9C&amp;type=5&amp;interval_id=100:90&amp;action=" target="_blank" rel="external">开豆瓣电影分类排行榜 - 动作片</a>栏目。<br><img src="http://7xraal.com1.z0.glb.clouddn.com/Scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89--%20%E6%8A%93%E5%8F%96AJAX%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E7%BD%91%E9%A1%B51.1.png" alt=""><br>打开过后你有没有发现什么不一样的地方呢？如果你的网速慢你会发现下面的电影信息是在网页别的部分出现后才慢慢出现的，试着把界面往下滑会不断有新的电影信息更新出来。<br>遇到这种情况初步就可以认定这个页面是采用AJAX异步加载的，你也可以通过右键查看网页源码来鉴别。比如说你右键查看源码ctrl+f搜索这个杀手不太冷这几个字，你会发现源码里没有。<br><img src="http://7xraal.com1.z0.glb.clouddn.com/Scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89--%20%E6%8A%93%E5%8F%96AJAX%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E7%BD%91%E9%A1%B52.png" alt=""><br>上面的方法虽然能用，但是总感觉有点笨。还记得上面推荐的那个chrome插件Toggle JavaScript吗？<br><img src="http://7xraal.com1.z0.glb.clouddn.com/Scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89--%20%E6%8A%93%E5%8F%96AJAX%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E7%BD%91%E9%A1%B53.png" alt=""><br>安好这个插件它就会出现在chrome浏览器的右边，试着轻轻点一下。<br><img src="http://7xraal.com1.z0.glb.clouddn.com/Scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89--%20%E6%8A%93%E5%8F%96AJAX%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E7%BD%91%E9%A1%B54.png" alt=""><br>我的天呐！这么神奇吗？！刚才的电影信息都不见了！还记得AJAX的介绍吗？AJAX = 异步 JavaScript和XML。当我们点击了插件就代表这个我们封禁了JavaScript,这个页面里的JavaScript代码无法执行，那么通过AJAX异步加载而来的信息当然就无法出现了。通过这种方法我们能快速精确地知道哪些信息是异步加载而来的。</p>
+<h2 id="如何抓取AJAX异步加载页面"><a href="#如何抓取AJAX异步加载页面" class="headerlink" title="如何抓取AJAX异步加载页面"></a>如何抓取AJAX异步加载页面</h2><p>对于这种网页我们一般会采用两种方法：</p>
+<ol>
+<li>通过抓包找到AJAX异步加载的请求地址；</li>
+<li>通过使用PhantomJS等无头浏览器执行JS代码后再对网页进行抓取。</li>
+</ol>
+<p>通常情况下我会采用第一种方法，因为使用无头浏览器会大大降低抓取效率，而且第一种方法得到的数据格式往往以Json为主，非常干净。在这里我只讲解第一种方法，第二种方法作为爬虫的终极武器我会在后续的教程中进行讲解。<br>回到我们需要抓取的页面，还记得我说过页面的一个细节吗，下拉更新。进入页面后我们按F12打开chrome浏览器的开发者工具选择Network，然后实现一次下拉更新。<br><img src="http://7xraal.com1.z0.glb.clouddn.com/Scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89--%20%E6%8A%93%E5%8F%96AJAX%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E7%BD%91%E9%A1%B55.png" alt=""><br>你会在Network里发现一个Response为Json格式的请求，仔细看看Json里的内容你会明白这些都是网页上显示的电影信息。右键该请求地址选择Open Link in New Tab,如果你装了JSON-handle插件你会以下面这种更友好的方式查看这个Json串。<br><img src="http://7xraal.com1.z0.glb.clouddn.com/Scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89--%20%E6%8A%93%E5%8F%96AJAX%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E7%BD%91%E9%A1%B56.png" alt=""><br>接着再让我们看一该请求的Header信息。<br><img src="http://7xraal.com1.z0.glb.clouddn.com/Scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89--%20%E6%8A%93%E5%8F%96AJAX%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E7%BD%91%E9%A1%B57.png" alt=""><br>首先我们可以看出这是一个get请求，多看几个下拉请求的地址后你会发现地中的start=xxx在不断变化，每次增加20。所以我们只用更改这个参数就可以实现翻页不断获取新数据(修改其他的参数也会有不同的效果，这里就不一一细说了，留给大家慢慢地探索)。<br>spider代码如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="comment"># @Time     : 2017/4/9 14:32</span></div><div class="line"><span class="comment"># @Author   : woodenrobot</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">import</span> re</div><div class="line"><span class="keyword">import</span> json</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">from</span> scrapy <span class="keyword">import</span> Request</div><div class="line"><span class="keyword">from</span> scrapy.spiders <span class="keyword">import</span> Spider</div><div class="line"><span class="keyword">from</span> scrapyspider.items <span class="keyword">import</span> DoubanMovieItem</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DoubanAJAXSpider</span><span class="params">(Spider)</span>:</span></div><div class="line">    name = <span class="string">'douban_ajax'</span></div><div class="line">    headers = &#123;</div><div class="line">        <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36'</span>,</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span></div><div class="line">        url = <span class="string">'https://movie.douban.com/j/chart/top_list?type=5&amp;interval_id=100%3A90&amp;action=&amp;start=0&amp;limit=20'</span></div><div class="line">        <span class="keyword">yield</span> Request(url, headers=self.headers)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></div><div class="line">        datas = json.loads(response.body)</div><div class="line">        item = DoubanMovieItem()</div><div class="line">        <span class="keyword">if</span> datas:</div><div class="line">            <span class="keyword">for</span> data <span class="keyword">in</span> datas:</div><div class="line">                item[<span class="string">'ranking'</span>] = data[<span class="string">'rank'</span>]</div><div class="line">                item[<span class="string">'movie_name'</span>] = data[<span class="string">'title'</span>]</div><div class="line">                item[<span class="string">'score'</span>] = data[<span class="string">'score'</span>]</div><div class="line">                item[<span class="string">'score_num'</span>] = data[<span class="string">'vote_count'</span>]</div><div class="line">                <span class="keyword">yield</span> item</div><div class="line"></div><div class="line">            <span class="comment"># 如果datas存在数据则对下一页进行采集</span></div><div class="line">            page_num = re.search(<span class="string">r'start=(\d+)'</span>, response.url).group(<span class="number">1</span>)</div><div class="line">            page_num = <span class="string">'start='</span> + str(int(page_num)+<span class="number">20</span>)</div><div class="line">            next_url = re.sub(<span class="string">r'start=\d+'</span>, page_num, response.url)</div><div class="line">            <span class="keyword">yield</span> Request(next_url, headers=self.headers)</div></pre></td></tr></table></figure></p>
+<p>在Scrapy工程文件的spiders里写好爬虫文件后在settings.py所在的目录下打开终端运行以下代码就能输出相应的电影数据。<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scrapy crawl douban_ajax -o douban_movie.csv</div></pre></td></tr></table></figure></p>
+<p>代码Github地址：<a href="https://github.com/Wooden-Robot/scrapy-tutorial/blob/master/scrapyspider/scrapyspider/spiders/douban_ajax_spider.py" target="_blank" rel="external">https://github.com/Wooden-Robot/scrapy-tutorial/blob/master/scrapyspider/scrapyspider/spiders/douban_ajax_spider.py</a></p>
+<h1 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h1><p>整片文章主要以介绍思路为主，抓取的站点也只是做示范内容并不重要。授之以鱼不如授之以渔，希望大家可以从这篇教程里学到解决问题的方法与思路。: )</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果觉得对您有所帮助，欢迎赞助瓶饮料支持一下！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://7xraal.com1.z0.glb.clouddn.com/%E6%89%93%E8%B5%8FIMG_20161001_162637.jpg" alt="woodenrobot Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      woodenrobot
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://woodenrobot.me/2017/04/09/Scrapy爬虫框架教程（四）-抓取AJAX异步加载网页/" title="Scrapy爬虫框架教程（四）-- 抓取AJAX异步加载网页">http://woodenrobot.me/2017/04/09/Scrapy爬虫框架教程（四）-抓取AJAX异步加载网页/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
+          
+            <a href="/tags/Scrapy/" rel="tag"># Scrapy</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/12/Scrapy爬虫框架教程（三）-调试-Debugging-Spiders/" rel="next" title="Scrapy爬虫框架教程（三）-- 调试(Debugging)Spiders">
+                <i class="fa fa-chevron-left"></i> Scrapy爬虫框架教程（三）-- 调试(Debugging)Spiders
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xraal.com1.z0.glb.clouddn.com/avatar.jpg"
+               alt="woodenrobot" />
+          <p class="site-author-name" itemprop="name">woodenrobot</p>
+           
+              <p class="site-description motion-element" itemprop="description">why so serious?</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1561651905" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Wooden-Robot" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/woodenrobot" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://site.douban.com/177837/" title="瓢虫映像" target="_blank">瓢虫映像</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://woodenrobot.me/about/" title="我的信息" target="_blank">我的信息</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://xlzd.me/" title="xlzd杂谈" target="_blank">xlzd杂谈</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#工具和环境"><span class="nav-number">2.</span> <span class="nav-text">工具和环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是AJAX"><span class="nav-number">3.</span> <span class="nav-text">什么是AJAX?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#两个Chrome插件"><span class="nav-number">4.</span> <span class="nav-text">两个Chrome插件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Toggle-JavaScript"><span class="nav-number">4.1.</span> <span class="nav-text">Toggle JavaScript</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSON-handle"><span class="nav-number">4.2.</span> <span class="nav-text">JSON-handle</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分析过程"><span class="nav-number">5.</span> <span class="nav-text">分析过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分析页面是否采用AJAX"><span class="nav-number">5.1.</span> <span class="nav-text">分析页面是否采用AJAX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何抓取AJAX异步加载页面"><span class="nav-number">5.2.</span> <span class="nav-text">如何抓取AJAX异步加载页面</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结尾"><span class="nav-number">6.</span> <span class="nav-text">结尾</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">woodenrobot</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">本站访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">站总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "a66e38e5a52b4f05ab0412f9cd391661",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

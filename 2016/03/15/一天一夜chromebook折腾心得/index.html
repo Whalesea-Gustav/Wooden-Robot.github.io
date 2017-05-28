@@ -1,0 +1,948 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ChromeBook," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="woodenrobot" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="http://7xraal.com1.z0.glb.clouddn.com/avatar.jpg?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="前言在学习Python的过程中了解到Python程序员工作环境多为Linux，所以就有了学习Linux系统的打算。最初是在windows系统虚拟机里安装了Ubuntu，奈何体验不太好。在考虑入手树莓派的时候无意间看到了ChromeBook，一下子就陷了进去不能自拔，慢慢发现还能在原装Chrome OS中装上Linux，一冲动就买了一台二手HP ChromeBook 14，开始了一天一夜的搞机生活。">
+<meta name="keywords" content="ChromeBook">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一天一夜chromebook折腾心得">
+<meta property="og:url" content="http://woodenrobot.me/2016/03/15/一天一夜chromebook折腾心得/index.html">
+<meta property="og:site_name" content="woodenrobot">
+<meta property="og:description" content="前言在学习Python的过程中了解到Python程序员工作环境多为Linux，所以就有了学习Linux系统的打算。最初是在windows系统虚拟机里安装了Ubuntu，奈何体验不太好。在考虑入手树莓派的时候无意间看到了ChromeBook，一下子就陷了进去不能自拔，慢慢发现还能在原装Chrome OS中装上Linux，一冲动就买了一台二手HP ChromeBook 14，开始了一天一夜的搞机生活。">
+<meta property="og:image" content="http://7xraal.com1.z0.glb.clouddn.com/%E4%B8%80%E5%A4%A9%E4%B8%80%E5%A4%9Cchromebook%E6%8A%98%E8%85%BE%E5%BF%83%E5%BE%9709f77c4e9258d109ba5c010bd358ccbf6d814d6b.jpg">
+<meta property="og:updated_time" content="2017-04-02T06:48:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一天一夜chromebook折腾心得">
+<meta name="twitter:description" content="前言在学习Python的过程中了解到Python程序员工作环境多为Linux，所以就有了学习Linux系统的打算。最初是在windows系统虚拟机里安装了Ubuntu，奈何体验不太好。在考虑入手树莓派的时候无意间看到了ChromeBook，一下子就陷了进去不能自拔，慢慢发现还能在原装Chrome OS中装上Linux，一冲动就买了一台二手HP ChromeBook 14，开始了一天一夜的搞机生活。">
+<meta name="twitter:image" content="http://7xraal.com1.z0.glb.clouddn.com/%E4%B8%80%E5%A4%A9%E4%B8%80%E5%A4%9Cchromebook%E6%8A%98%E8%85%BE%E5%BF%83%E5%BE%9709f77c4e9258d109ba5c010bd358ccbf6d814d6b.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://woodenrobot.me/2016/03/15/一天一夜chromebook折腾心得/"/>
+
+
+
+
+
+  <title>一天一夜chromebook折腾心得 | woodenrobot</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-85052923-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f6877c80d4354214ca22c266ee5fbdcf";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">woodenrobot</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'VoiY4z5j6Jqgx1Gfw2Xj','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://woodenrobot.me/2016/03/15/一天一夜chromebook折腾心得/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="woodenrobot">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://7xraal.com1.z0.glb.clouddn.com/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="woodenrobot">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">一天一夜chromebook折腾心得</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-15T09:18:16+08:00">
+                2016-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2016/03/15/一天一夜chromebook折腾心得/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在学习Python的过程中了解到Python程序员工作环境多为Linux，所以就有了学习Linux系统的打算。最初是在windows系统虚拟机里安装了Ubuntu，奈何体验不太好。在考虑入手树莓派的时候无意间看到了ChromeBook，一下子就陷了进去不能自拔，慢慢发现还能在原装Chrome OS中装上Linux，一冲动就买了一台二手HP ChromeBook 14，开始了一天一夜的搞机生活。<br><a id="more"></a></p>
+<hr>
+<h1 id="激活教程"><a href="#激活教程" class="headerlink" title="激活教程"></a>激活教程</h1><p>买到新机器首先要进行激活，也就是登陆谷歌账号。但是由于谷歌在天朝被封，所以我门需要利用一些技术手段激活自己的ChromeBook，这里我给大家推荐两种方法：<br>1.使用PAC代理服务器：<a href="http://pac.itzmx.com/" target="_blank" rel="external">http://pac.itzmx.com/</a><br>2.使用ChromeBook吧置顶帖<a href="http://tieba.baidu.com/p/4308430637" target="_blank" rel="external">Chrome设备hosts 替换&amp;激活 教程</a></p>
+<h1 id="crouton"><a href="#crouton" class="headerlink" title="crouton"></a>crouton</h1><p>利用crouton可以在Chrome OS系统内装入Ubuntu系统（可以理解为寄生）。此方法比较简单可以在两种操作系统中方便的来回切换。如果你英文好，可以先去<a href="https://github.com/dnschneid/crouton" target="_blank" rel="external">crouton的主页</a>好好浏览一下文档。</p>
+<h1 id="备份Chrome-OS系统"><a href="#备份Chrome-OS系统" class="headerlink" title="备份Chrome OS系统"></a>备份Chrome OS系统</h1><p><strong>折腾以前一定要对原Chrome OS系统进行备份。</strong><br><strong>折腾以前一定要对原Chrome OS系统进行备份。</strong><br><strong>折腾以前一定要对原Chrome OS系统进行备份。</strong><br>重要的事我说三遍！<br>首先登陆Chrome网上应用商店搜索并下载Chromebook Recovery Utility这个应用，然后准备一个4G以上的U盘插入电脑。打开刚刚下载的应用根据提示做好系统备份。（注：U盘在备份过程中会被格式化。）</p>
+<h1 id="开启开发者模式"><a href="#开启开发者模式" class="headerlink" title="开启开发者模式"></a>开启开发者模式</h1><p>进入开发者模式：电源键+esc+刷新键 (第1排左到右第4个键)<br>系统重启后，忽略系统警告：ctrl+d<br>关闭系统验证：ENTER键<br>跳过系统警告：ctrl+d (可能需多按几次)<br>系统开始部署开发者模式环境，大概需要5-10分钟左右完成<br>自动重启后，如果能用ctrl+alt+后退键（第1排第2个键）和 ctrl+alt+前进键（第1排第3个键）来回切换终端与桌面，表示开启成功。</p>
+<h1 id="利用crouton安装Ubuntu"><a href="#利用crouton安装Ubuntu" class="headerlink" title="利用crouton安装Ubuntu"></a>利用crouton安装Ubuntu</h1><p>浏览了贴吧各种教程，最终均在这一步失败。主要是因为利用crouton下载Ubuntu时有一部分audio需要连接谷歌的网站所以无法完成安装。此前我们激活所用的代理应该不是全局代理无法在此处翻墙下载。下面为大家提供两种方案：</p>
+<h2 id="以下方法适用于cpu为x86架构"><a href="#以下方法适用于cpu为x86架构" class="headerlink" title="以下方法适用于cpu为x86架构"></a>以下方法适用于cpu为x86架构</h2><h3 id="1-ChromeBook已全局翻墙"><a href="#1-ChromeBook已全局翻墙" class="headerlink" title="1.ChromeBook已全局翻墙"></a>1.ChromeBook已全局翻墙</h3><p>首先<a href="https://goo.gl/fd3zc" target="_blank" rel="external">下载crouton文件</a>（在ChromeBook内点击下载）,文件会放入默认文件夹。<br>然后用Ctrl+ALT+T 调出crosh窗口，输入shell，回车。如果已经成功进入开发者模式，会显示：<br><img src="http://7xraal.com1.z0.glb.clouddn.com/%E4%B8%80%E5%A4%A9%E4%B8%80%E5%A4%9Cchromebook%E6%8A%98%E8%85%BE%E5%BF%83%E5%BE%9709f77c4e9258d109ba5c010bd358ccbf6d814d6b.jpg" alt=""><br>接着输入：<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo sh -e ~/Downloads/crouton -r trusty -t keyboard,extension,unity-desktop -m http://mirrors.ustc.edu.cn/ubuntu</div></pre></td></tr></table></figure></p>
+<p>其中<code>-m http://mirrors.ustc.edu.cn/ubuntu</code>为加入国内ubuntu下载镜像可以增加下载速度。此处安装的版本较大功能也较全，HP chromebook 14 4G内存，16GSSD使用过程中很流畅。</p>
+<h3 id="2-crouton添加audio模块国内下载源"><a href="#2-crouton添加audio模块国内下载源" class="headerlink" title="2.crouton添加audio模块国内下载源"></a>2.crouton添加audio模块国内下载源</h3><p>首先可以参考国内大神的github：<a href="https://github.com/dubuqingfeng/chromebook-for-chinese" target="_blank" rel="external">https://github.com/dubuqingfeng/chromebook-for-chinese</a><br>我已经根据国内大神的教程改造好文件，在Chromebook进入下载：链接: <a href="https://pan.baidu.com/s/1i50ZJfB" target="_blank" rel="external">https://pan.baidu.com/s/1i50ZJfB</a> 密码: exfk <strong>(ps:由于版本太旧失效，已更新最新版。–2017/04/02–）</strong><br>文件下载后存放在默认文件夹，输入以代码：<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~/Downloads/</div><div class="line">sudo tar -xzf crouton-master.tar.gz</div><div class="line">sudo sh -e ~/Downloads/crouton-master/installer/main.sh -r trusty -t keyboard,extension,unity-desktop -m http://mirrors.ustc.edu.cn/ubuntu</div></pre></td></tr></table></figure></p>
+<p>两种方法安装到最后都会要求填入用户名和密码。<br>输入以下代码启动ubuntu：<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo startunity</div></pre></td></tr></table></figure></p>
+<p>如果因为网络问题运行到半截就停下了，也可以试试输入这个进入的命令，也许会提示安装未完成，是否恢复，选择y进行恢复。</p>
+<h1 id="怎样进入Ubuntu系统"><a href="#怎样进入Ubuntu系统" class="headerlink" title="怎样进入Ubuntu系统"></a>怎样进入Ubuntu系统</h1><p>1.开机<br>2.登录<br>3.<code>ctrl+alt+t</code><br>4.输入<code>shell</code><br>5.输入<code>sudo startunity</code><br>6.进入</p>
+<h1 id="如何切换Chrome-OS和Ubuntu"><a href="#如何切换Chrome-OS和Ubuntu" class="headerlink" title="如何切换Chrome OS和Ubuntu"></a>如何切换Chrome OS和Ubuntu</h1><p>从C到U：shift+ctrl+alt+前进键（第1排第3个键）<br>从U到C：shift+ctrl+alt+后退键（第1排第2个键）</p>
+<h1 id="安装ubuntu后bug解决方案"><a href="#安装ubuntu后bug解决方案" class="headerlink" title="安装ubuntu后bug解决方案"></a>安装ubuntu后bug解决方案</h1><p>1.在Chrome OS中shift+alt+T调出crosh窗口，输入<code>shell</code>。<br>2.输入<code>sudo enter-chroot -n trusty</code><br>3.输入<code>sudo apt-get dist-upgrade</code><br>4.Ctrl+D登出<br>5.输入<code>sudo sh -e ~/Downloads/crouton-master/installer/main.sh(下载的哪个文件用哪个文件名） -u -n trusty</code><br>等待更新完成。一般出现的无声音、不能播放视频等BUG都可以解决。<br><strong>注：trusty为版本号，你使用哪个版本填写哪个版本号</strong></p>
+<h1 id="ubuntu在终端下更改系统语言"><a href="#ubuntu在终端下更改系统语言" class="headerlink" title="ubuntu在终端下更改系统语言"></a>ubuntu在终端下更改系统语言</h1><p>我曾试过在系统设置中更改系统语言但是失败了，提示说权限不够。所以就在终端中更改系统语言。<br>1.首先安装简体中文语言包<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install language-pack-zh-hans language-pack-zh-hans-base language-pack-gnome-zh-hans language-pack-gnome-zh-hans-base</div></pre></td></tr></table></figure></p>
+<p>2.然后安装firefox，libreoffice，thunderbird等程序的中文语言包<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install `check-language-support -l zh`</div></pre></td></tr></table></figure></p>
+<p>3.将locale中的语言设为zh_CN.UTF-8<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo localectl <span class="built_in">set</span>-locale LANG=zh_CN.UTF-<span class="number">8</span></div></pre></td></tr></table></figure></p>
+<p>4.重启后生效</p>
+<h1 id="备份、恢复及删除crouton下的ubuntu系统"><a href="#备份、恢复及删除crouton下的ubuntu系统" class="headerlink" title="备份、恢复及删除crouton下的ubuntu系统"></a>备份、恢复及删除crouton下的ubuntu系统</h1><p>crouton下的ubuntu系统备份、回复及删除都在Chrome OS下的Shell（<code>ctrl</code>+<code>alt</code>+<code>t</code>进入后输入<code>shell</code>）中操作。</p>
+<h2 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo edit-chroot -b trusty</div></pre></td></tr></table></figure>
+<p><strong>注：trusty为ubuntu的版本名称，即14.04为trusty</strong></p>
+<h2 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo sh ~/Downloads/crouton -f ~/Downloads/*.tar.gz</div></pre></td></tr></table></figure>
+<p><strong>注：将*.tar.gz改为你的备份文件名。</strong></p>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo edit-chroot -d trusty</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="参考内容"><a href="#参考内容" class="headerlink" title="参考内容"></a>参考内容</h1><ol>
+<li><a href="http://tieba.baidu.com/p/2919742459" target="_blank" rel="external">【教程】小白是怎样利用crouton给C720 Chromebook装ubuntu的
+</a></li>
+<li><a href="http://tieba.baidu.com/p/4397782112" target="_blank" rel="external">【答疑楼】crouton及扩展桌面环境答疑楼</a></li>
+<li><a href="https://github.com/dubuqingfeng/chromebook-for-chinese" target="_blank" rel="external">在中国使用chromebook</a></li>
+<li><a href="http://www.linuxdashen.com/ubuntu%E5%A6%82%E4%BD%95%E5%9C%A8%E7%BB%88%E7%AB%AF%E4%B8%8B%E6%9B%B4%E6%94%B9%E7%B3%BB%E7%BB%9F%E8%AF%AD%E8%A8%80" target="_blank" rel="external">ubuntu如何在终端下更改系统语言</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果觉得对您有所帮助，欢迎赞助瓶饮料支持一下！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://7xraal.com1.z0.glb.clouddn.com/%E6%89%93%E8%B5%8FIMG_20161001_162637.jpg" alt="woodenrobot Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      woodenrobot
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://woodenrobot.me/2016/03/15/一天一夜chromebook折腾心得/" title="一天一夜chromebook折腾心得">http://woodenrobot.me/2016/03/15/一天一夜chromebook折腾心得/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ChromeBook/" rel="tag"># ChromeBook</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/07/谈一谈Python中str()和repr()的区别/" rel="next" title="谈一谈Python中str()和repr()的区别">
+                <i class="fa fa-chevron-left"></i> 谈一谈Python中str()和repr()的区别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/22/用Python模拟登陆微博/" rel="prev" title="用Python模拟登陆微博">
+                用Python模拟登陆微博 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xraal.com1.z0.glb.clouddn.com/avatar.jpg"
+               alt="woodenrobot" />
+          <p class="site-author-name" itemprop="name">woodenrobot</p>
+           
+              <p class="site-description motion-element" itemprop="description">why so serious?</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1561651905" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Wooden-Robot" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/woodenrobot" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://site.douban.com/177837/" title="瓢虫映像" target="_blank">瓢虫映像</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://woodenrobot.me/about/" title="我的信息" target="_blank">我的信息</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://xlzd.me/" title="xlzd杂谈" target="_blank">xlzd杂谈</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#激活教程"><span class="nav-number">2.</span> <span class="nav-text">激活教程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#crouton"><span class="nav-number">3.</span> <span class="nav-text">crouton</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#备份Chrome-OS系统"><span class="nav-number">4.</span> <span class="nav-text">备份Chrome OS系统</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开启开发者模式"><span class="nav-number">5.</span> <span class="nav-text">开启开发者模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#利用crouton安装Ubuntu"><span class="nav-number">6.</span> <span class="nav-text">利用crouton安装Ubuntu</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#以下方法适用于cpu为x86架构"><span class="nav-number">6.1.</span> <span class="nav-text">以下方法适用于cpu为x86架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-ChromeBook已全局翻墙"><span class="nav-number">6.1.1.</span> <span class="nav-text">1.ChromeBook已全局翻墙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-crouton添加audio模块国内下载源"><span class="nav-number">6.1.2.</span> <span class="nav-text">2.crouton添加audio模块国内下载源</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#怎样进入Ubuntu系统"><span class="nav-number">7.</span> <span class="nav-text">怎样进入Ubuntu系统</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何切换Chrome-OS和Ubuntu"><span class="nav-number">8.</span> <span class="nav-text">如何切换Chrome OS和Ubuntu</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装ubuntu后bug解决方案"><span class="nav-number">9.</span> <span class="nav-text">安装ubuntu后bug解决方案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ubuntu在终端下更改系统语言"><span class="nav-number">10.</span> <span class="nav-text">ubuntu在终端下更改系统语言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#备份、恢复及删除crouton下的ubuntu系统"><span class="nav-number">11.</span> <span class="nav-text">备份、恢复及删除crouton下的ubuntu系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#备份"><span class="nav-number">11.1.</span> <span class="nav-text">备份</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#恢复"><span class="nav-number">11.2.</span> <span class="nav-text">恢复</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除"><span class="nav-number">11.3.</span> <span class="nav-text">删除</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考内容"><span class="nav-number">12.</span> <span class="nav-text">参考内容</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">woodenrobot</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">本站访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">站总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "a66e38e5a52b4f05ab0412f9cd391661",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
