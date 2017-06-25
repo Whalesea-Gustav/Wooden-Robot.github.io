@@ -1,0 +1,984 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Python," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="woodenrobot" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="http://7xraal.com1.z0.glb.clouddn.com/avatar.jpg?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="简介Sphinx 是一种文档工具，它可以令人轻松的撰写出清晰且优美的文档, 由 Georg Brandl 在BSD 许可证下开发. 新版的Python文档就是由Sphinx生成的， 并且它已成为Python项目首选的文档工具,同时它对 C/C++ 项目也有很好的支持; 并计划对其它开发语言添加特殊支持. 本站当然也是使用 Sphinx 生成的，它采用reStructuredText! Sphinx">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用Sphinx快速制作文档">
+<meta property="og:url" content="http://woodenrobot.me/2017/06/25/用Sphinx快速制作文档/index.html">
+<meta property="og:site_name" content="woodenrobot">
+<meta property="og:description" content="简介Sphinx 是一种文档工具，它可以令人轻松的撰写出清晰且优美的文档, 由 Georg Brandl 在BSD 许可证下开发. 新版的Python文档就是由Sphinx生成的， 并且它已成为Python项目首选的文档工具,同时它对 C/C++ 项目也有很好的支持; 并计划对其它开发语言添加特殊支持. 本站当然也是使用 Sphinx 生成的，它采用reStructuredText! Sphinx">
+<meta property="og:updated_time" content="2017-06-25T07:34:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用Sphinx快速制作文档">
+<meta name="twitter:description" content="简介Sphinx 是一种文档工具，它可以令人轻松的撰写出清晰且优美的文档, 由 Georg Brandl 在BSD 许可证下开发. 新版的Python文档就是由Sphinx生成的， 并且它已成为Python项目首选的文档工具,同时它对 C/C++ 项目也有很好的支持; 并计划对其它开发语言添加特殊支持. 本站当然也是使用 Sphinx 生成的，它采用reStructuredText! Sphinx">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://woodenrobot.me/2017/06/25/用Sphinx快速制作文档/"/>
+
+
+
+
+
+  <title>用Sphinx快速制作文档 | woodenrobot</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-85052923-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f6877c80d4354214ca22c266ee5fbdcf";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1262047333&web_id=1262047333" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">woodenrobot</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'VoiY4z5j6Jqgx1Gfw2Xj','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://woodenrobot.me/2017/06/25/用Sphinx快速制作文档/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="woodenrobot">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://7xraal.com1.z0.glb.clouddn.com/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="woodenrobot">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">用Sphinx快速制作文档</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-25T15:24:40+08:00">
+                2017-06-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/06/25/用Sphinx快速制作文档/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Sphinx 是一种文档工具，它可以令人轻松的撰写出清晰且优美的文档, 由 Georg Brandl 在BSD 许可证下开发. <a href="https://docs.python.org/3/" target="_blank" rel="external">新版的Python文档</a>就是由Sphinx生成的， 并且它已成为Python项目首选的文档工具,同时它对 C/C++ 项目也有很好的支持; 并计划对其它开发语言添加特殊支持. 本站当然也是使用 Sphinx 生成的，它采用reStructuredText! Sphinx还在继续开发. 下面列出了其良好特性,这些特性在Python官方文档中均有体现:</p>
+<ul>
+<li>丰富的输出格式: 支持 HTML (包括 Windows 帮助文档), LaTeX (可以打印PDF版本), manual pages（man 文档）, 纯文本</li>
+<li>完备的交叉引用: 语义化的标签,并可以自动化链接函数,类,引文,术语及相似的片段信息</li>
+<li>明晰的分层结构: 可以轻松的定义文档树,并自动化链接同级/父级/下级文章</li>
+<li>美观的自动索引: 可自动生成美观的模块索引</li>
+<li>精确的语法高亮: 基于 Pygments 自动生成语法高亮</li>
+<li>开放的扩展: 支持代码块的自动测试,并包含Python模块的自述文档(API docs)等  </li>
+</ul>
+<p>Sphinx 使用 reStructuredText 作为标记语言, 可以享有 Docutils 为reStructuredText提供的分析，转换等多种工具.<br><a id="more"></a></p>
+<h1 id="安装Sphinx"><a href="#安装Sphinx" class="headerlink" title="安装Sphinx"></a>安装Sphinx</h1><p>Sphinx为Python语言的一个第三方库。我们需要在终端中输入下列命令进行安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install sphinx</div></pre></td></tr></table></figure></p>
+<h1 id="创建Sphinx项目"><a href="#创建Sphinx项目" class="headerlink" title="创建Sphinx项目"></a>创建Sphinx项目</h1><p>创建一个用于存放文档的文件夹，然后在该文件夹路径下运行下列命令快速生成Sphinx项目：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sphinx-quickstart</div></pre></td></tr></table></figure></p>
+<p>接下来会让你选择一些配置：</p>
+<ol>
+<li><p>设置文档的根路径（回车，使用默认设置）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Enter the root path for documentation.</div><div class="line">&gt; Root path for the documentation [.]:</div></pre></td></tr></table></figure>
+</li>
+<li><p>是否分离source和build目录（输入y,选择分离，方便管理）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">You have two options for placing the build directory for Sphinx output.</div><div class="line">Either, you use a directory &quot;_build&quot; within the root path, or you separate</div><div class="line">&quot;source&quot; and &quot;build&quot; directories within the root path.</div><div class="line">&gt; Separate source and build directories (y/n) [n]:</div></pre></td></tr></table></figure>
+</li>
+<li><p>设定模板前缀（回车，使用默认选项）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Inside the root directory, two more directories will be created; &quot;_templates&quot;</div><div class="line">for custom HTML templates and &quot;_static&quot; for custom stylesheets and other static</div><div class="line">files. You can enter another prefix (such as &quot;.&quot;) to replace the underscore.</div><div class="line">&gt; Name prefix for templates and static dir [_]:</div></pre></td></tr></table></figure>
+</li>
+<li><p>输入项目名称和作者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">The project name will occur in several places in the built documentation.</div><div class="line">&gt; Project name: Sphinx-test</div><div class="line">&gt; Author name(s): test</div></pre></td></tr></table></figure>
+</li>
+<li><p>输入项目版本号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Sphinx has the notion of a &quot;version&quot; and a &quot;release&quot; for the</div><div class="line">software. Each version can have multiple releases. For example, for</div><div class="line">Python the version is something like 2.5 or 3.0, while the release is</div><div class="line">something like 2.5.1 or 3.0a1.  If you don&apos;t need this dual structure,</div><div class="line">just set both to the same value.</div><div class="line">&gt; Project version []: 1.0.0</div><div class="line">&gt; Project release [1.0.0]:</div></pre></td></tr></table></figure>
+</li>
+<li><p>文档语言（回车，默认即可）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">If the documents are to be written in a language other than English,</div><div class="line">you can select a language here by its language code. Sphinx will then</div><div class="line">translate text that it generates into that language.</div><div class="line"></div><div class="line">For a list of supported codes, see</div><div class="line">http://sphinx-doc.org/config.html#confval-language.</div><div class="line">&gt; Project language [en]:</div></pre></td></tr></table></figure>
+</li>
+<li><p>设定文档文就按的后缀</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">The file name suffix for source files. Commonly, this is either &quot;.txt&quot;</div><div class="line">or &quot;.rst&quot;.  Only files with this suffix are considered documents.</div><div class="line">&gt; Source file suffix [.rst]:</div></pre></td></tr></table></figure>
+</li>
+<li><p>设定首页名称（回车，选择默认index即可）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">One document is special in that it is considered the top node of the</div><div class="line">&quot;contents tree&quot;, that is, it is the root of the hierarchical structure</div><div class="line">of the documents. Normally, this is &quot;index&quot;, but if your &quot;index&quot;</div><div class="line">document is a custom template, you can also set this to another filename.</div><div class="line">&gt; Name of your master document (without suffix) [index]:</div></pre></td></tr></table></figure>
+</li>
+<li><p>根据需要选择是否开启epub输出(一般用不到，回车默认不开启即可)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Sphinx can also add configuration for epub output:</div><div class="line">&gt; Do you want to use the epub builder (y/n) [n]:</div></pre></td></tr></table></figure>
+</li>
+<li><p>根据需求选择是否开启相应的Sphinx拓展功能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Please indicate if you want to use one of the following Sphinx extensions:</div><div class="line">&gt; autodoc: automatically insert docstrings from modules (y/n) [n]: y</div><div class="line">&gt; doctest: automatically test code snippets in doctest blocks (y/n) [n]: y</div><div class="line">&gt; intersphinx: link between Sphinx documentation of different projects (y/n) [n]: y</div><div class="line">&gt; todo: write &quot;todo&quot; entries that can be shown or hidden on build (y/n) [n]: y</div><div class="line">&gt; coverage: checks for documentation coverage (y/n) [n]: y</div><div class="line">&gt; imgmath: include math, rendered as PNG or SVG images (y/n) [n]: y</div><div class="line">&gt; mathjax: include math, rendered in the browser by MathJax (y/n) [n]: y</div><div class="line">Note: imgmath and mathjax cannot be enabled at the same time.</div><div class="line">imgmath has been deselected.</div><div class="line">&gt; ifconfig: conditional inclusion of content based on config values (y/n) [n]: y</div><div class="line">&gt; viewcode: include links to the source code of documented Python objects (y/n) [n]: y</div><div class="line">&gt; githubpages: create .nojekyll file to publish the document on GitHub pages (y/n) [n]: n</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建项目</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">A Makefile and a Windows command file can be generated for you so that you</div><div class="line">only have to run e.g. `make html&apos; instead of invoking sphinx-build</div><div class="line">directly.</div><div class="line">&gt; Create Makefile? (y/n) [y]: y</div><div class="line">&gt; Create Windows command file? (y/n) [y]: y</div><div class="line"></div><div class="line">Creating file ./conf.py.</div><div class="line">Creating file ./index.rst,.md.</div><div class="line">Creating file ./Makefile.</div><div class="line">Creating file ./make.bat.</div><div class="line"></div><div class="line">Finished: An initial directory structure has been created.</div><div class="line"></div><div class="line">You should now populate your master file ./index.rst,.md and create other documentation</div><div class="line">source files. Use the Makefile to build the docs, like so:</div><div class="line">   make builder</div><div class="line">where &quot;builder&quot; is one of the supported builders, e.g. html, latex or linkcheck.</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>项目创建以后目录结构如下所示:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── Makefile</div><div class="line">├── build</div><div class="line">├── make.bat</div><div class="line">└── source</div><div class="line">    ├── _static</div><div class="line">    ├── _templates</div><div class="line">    ├── conf.py</div><div class="line">    └── index.rst</div></pre></td></tr></table></figure></p>
+<ul>
+<li><strong>build</strong>:用来存放通过make html生成文档网页文件的目录</li>
+<li><strong>source</strong>：存放用于生成文档的源文件</li>
+<li><strong>conf.py</strong>: Sphinx的配置文件</li>
+<li><strong>index.rst</strong>: 主文档<h1 id="定义文档结构"><a href="#定义文档结构" class="headerlink" title="定义文档结构"></a>定义文档结构</h1>主文档index.rst的主要功能是被转换成欢迎页, 它包含一个目录表（ “table of contents tree”或者 toctree ). Sphinx 主要功能是使用 reStructuredText, 把许多文件组织成一份结构合理的文档.</li>
+</ul>
+<p>toctree指令初始值如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">.. toctree::</div><div class="line">   :maxdepth: 2</div></pre></td></tr></table></figure></p>
+<p>你可以在 content 的位置添加文档列表:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.. toctree::</div><div class="line">   :maxdepth: 2</div><div class="line"></div><div class="line">   tutorial.md</div><div class="line">   ...</div></pre></td></tr></table></figure></p>
+<p>注：文档文件放在与index.rst同级目录下。</p>
+<h1 id="支持markdown文件、更改文档主题"><a href="#支持markdown文件、更改文档主题" class="headerlink" title="支持markdown文件、更改文档主题"></a>支持markdown文件、更改文档主题</h1><p>Spinx本身不支持.md文件生成文档，需要我们使用第三方库recommonmark进行转换。<br>首先分别运行下列命令安装recommonmark与sphinx_rtd_theme库。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">pip install recommonmark</div><div class="line"></div><div class="line">pip install sphinx_rtd_theme</div></pre></td></tr></table></figure></p>
+<p>安装好，在conf.py中修改下列两个配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">source_suffix = [&apos;.rst&apos;, &apos;.md&apos;, &apos;.MD&apos;]</div><div class="line">html_theme = &apos;sphinx_rtd_theme&apos;</div></pre></td></tr></table></figure></p>
+<p>并新增：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">source_parsers = &#123;</div><div class="line">    &apos;.md&apos;: CommonMarkParser,</div><div class="line">    &apos;.MD&apos;: CommonMarkParser,</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="生成文档"><a href="#生成文档" class="headerlink" title="生成文档"></a>生成文档</h1><p>在Sphinx项目所在的文件夹路径下运行下列命令生成文档：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make html</div></pre></td></tr></table></figure></p>
+<p>生成后的文档位于build/html文件夹内，用浏览器打开index.html即可看到生成后的文档。</p>
+<hr>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ol>
+<li><a href="http://zh-sphinx-doc.readthedocs.io/en/latest/index.html" target="_blank" rel="external">Sphinx 使用手册</a></li>
+<li><a href="https://www.ibm.com/developerworks/cn/opensource/os-sphinx-documentation" target="_blank" rel="external">使用 sphinx 制作简洁而又美观的文档</a></li>
+<li><a href="https://www.biaodianfu.com/sphinx-documentation.html" target="_blank" rel="external">使用Sphinx制作说明文档</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果觉得对您有所帮助，欢迎赞助瓶饮料支持一下！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://7xraal.com1.z0.glb.clouddn.com/%E6%89%93%E8%B5%8FIMG_20161001_162637.jpg" alt="woodenrobot Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      woodenrobot
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://woodenrobot.me/2017/06/25/用Sphinx快速制作文档/" title="用Sphinx快速制作文档">http://woodenrobot.me/2017/06/25/用Sphinx快速制作文档/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/09/Scrapy爬虫框架教程（四）-抓取AJAX异步加载网页/" rel="next" title="Scrapy爬虫框架教程（四）-- 抓取AJAX异步加载网页">
+                <i class="fa fa-chevron-left"></i> Scrapy爬虫框架教程（四）-- 抓取AJAX异步加载网页
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xraal.com1.z0.glb.clouddn.com/avatar.jpg"
+               alt="woodenrobot" />
+          <p class="site-author-name" itemprop="name">woodenrobot</p>
+           
+              <p class="site-description motion-element" itemprop="description">why so serious?</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1561651905" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Wooden-Robot" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/woodenrobot" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://site.douban.com/177837/" title="瓢虫映像" target="_blank">瓢虫映像</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://woodenrobot.me/about/" title="我的信息" target="_blank">我的信息</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://xlzd.me/" title="xlzd杂谈" target="_blank">xlzd杂谈</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装Sphinx"><span class="nav-number">2.</span> <span class="nav-text">安装Sphinx</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建Sphinx项目"><span class="nav-number">3.</span> <span class="nav-text">创建Sphinx项目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义文档结构"><span class="nav-number">4.</span> <span class="nav-text">定义文档结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#支持markdown文件、更改文档主题"><span class="nav-number">5.</span> <span class="nav-text">支持markdown文件、更改文档主题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生成文档"><span class="nav-number">6.</span> <span class="nav-text">生成文档</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文章"><span class="nav-number">7.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">woodenrobot</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">本站访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">站总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "a66e38e5a52b4f05ab0412f9cd391661",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
