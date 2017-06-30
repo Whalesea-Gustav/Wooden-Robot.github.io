@@ -99,7 +99,7 @@
 <meta property="og:url" content="http://woodenrobot.me/2017/06/30/ssh-keygen详解/index.html">
 <meta property="og:site_name" content="woodenrobot">
 <meta property="og:description" content="文章来源于：ssh-keygen 中文手册 名称ssh-keygen - 生成、管理和转换认证密钥 语法12345678910111213141516ssh-keygen [-q] [-b bits] -t type [-N new_passphrase] [-C comment] [-f output_keyfile]ssh-keygen -p [-P old_passphrase] [-N n">
-<meta property="og:updated_time" content="2017-06-30T09:58:36.000Z">
+<meta property="og:updated_time" content="2017-06-30T10:06:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ssh-keygen详解">
 <meta name="twitter:description" content="文章来源于：ssh-keygen 中文手册 名称ssh-keygen - 生成、管理和转换认证密钥 语法12345678910111213141516ssh-keygen [-q] [-b bits] -t type [-N new_passphrase] [-C comment] [-f output_keyfile]ssh-keygen -p [-P old_passphrase] [-N n">
@@ -448,7 +448,7 @@
 <p><a href="http://man.openbsd.org/ssh" target="_blank" rel="external">ssh(1)</a>将在登录的时候读取这个文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~/.ssh/id_dsa.pub</div></pre></td></tr></table></figure></p>
 <p>该用户默认的 DSA 身份认证公钥(SSH-2)。此文件无需保密。<br>此文件的内容应该添加到所有 DSA 目标主机的 ~/.ssh/authorized_keys 文件中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~/.ssh/id_rsa</div></pre></td></tr></table></figure></p>
 <p>该用户默认的 RSA 身份认证私钥(SSH-2)。此文件的权限应当至少限制为”600”。<br>生成密钥的时候可以指定采用密语来加密该私钥(3DES)。  </p>
-<p><a href="http://man.openbsd.org/ssh" target="_blank" rel="external">ssh(1)</a>将在登录的时候读取这个文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">~/.ssh/id_rsa.pub</div><div class="line">``` </div><div class="line"> 该用户默认的 RSA 身份认证公钥(SSH-2)。此文件无需保密。  </div><div class="line"> 此文件的内容应该添加到所有 RSA 目标主机的 ~/.ssh/authorized_keys 文件中。</div></pre></td></tr></table></figure></p>
+<p><a href="http://man.openbsd.org/ssh" target="_blank" rel="external">ssh(1)</a>将在登录的时候读取这个文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">~/.ssh/id_rsa.pub</div><div class="line">``` </div><div class="line">该用户默认的 RSA 身份认证公钥(SSH-2)。此文件无需保密。  </div><div class="line">此文件的内容应该添加到所有 RSA 目标主机的 ~/.ssh/authorized_keys 文件中。</div></pre></td></tr></table></figure></p>
 <p>/etc/ssh/moduli<br>```<br>包含用于 DH-GEX 的 Diffie-Hellman groups。  </p>
 
       
