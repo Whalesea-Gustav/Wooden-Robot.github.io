@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="WoodenRobot" />
+  <meta name="keywords" content="ssh," />
 
 
 
@@ -92,15 +92,17 @@
 
 
 
-<meta name="description" content="Life is short, should be fun!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="WoodenRobot&#39;s Blog">
-<meta property="og:url" content="http://woodenrobot.me/archives/2017/10/index.html">
+<meta name="description" content="前言生成 SSH 秘钥时，会让你输入私钥的密码，直接回车则意为不设密码，如果设置了私钥密码，每次使用 SSH 进行操作都需要输入私钥密码。虽然这样增加了安全性，但是使用 SSH 的目的很多时候就是想更加方便，跳过输入账号密码这一步。只要保存好自己的私钥不泄露，一般不设私钥密码是没有太大的风险的。如果已经生成带密码的私钥，又想取消密码可以按下列两种方法操作。">
+<meta name="keywords" content="ssh">
+<meta property="og:type" content="article">
+<meta property="og:title" content="取消 SSH 私钥密码">
+<meta property="og:url" content="http://woodenrobot.me/2018/01/30/取消-SSH-私钥密码/index.html">
 <meta property="og:site_name" content="WoodenRobot&#39;s Blog">
-<meta property="og:description" content="Life is short, should be fun!">
+<meta property="og:description" content="前言生成 SSH 秘钥时，会让你输入私钥的密码，直接回车则意为不设密码，如果设置了私钥密码，每次使用 SSH 进行操作都需要输入私钥密码。虽然这样增加了安全性，但是使用 SSH 的目的很多时候就是想更加方便，跳过输入账号密码这一步。只要保存好自己的私钥不泄露，一般不设私钥密码是没有太大的风险的。如果已经生成带密码的私钥，又想取消密码可以按下列两种方法操作。">
+<meta property="og:updated_time" content="2018-01-30T03:58:42.179Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WoodenRobot&#39;s Blog">
-<meta name="twitter:description" content="Life is short, should be fun!">
+<meta name="twitter:title" content="取消 SSH 私钥密码">
+<meta name="twitter:description" content="前言生成 SSH 秘钥时，会让你输入私钥的密码，直接回车则意为不设密码，如果设置了私钥密码，每次使用 SSH 进行操作都需要输入私钥密码。虽然这样增加了安全性，但是使用 SSH 的目的很多时候就是想更加方便，跳过输入账号密码这一步。只要保存好自己的私钥不泄露，一般不设私钥密码是没有太大的风险的。如果已经生成带密码的私钥，又想取消密码可以按下列两种方法操作。">
 
 
 
@@ -128,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://woodenrobot.me/archives/2017/10/"/>
+  <link rel="canonical" href="http://woodenrobot.me/2018/01/30/取消-SSH-私钥密码/"/>
 
 
 
 
 
-  <title>归档 | WoodenRobot's Blog</title>
+  <title>取消 SSH 私钥密码 | WoodenRobot's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -185,7 +187,7 @@
     
   
 
-  <div class="container sidebar-position-left  page-archive  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -319,66 +321,241 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 27 篇日志。 继续努力。
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://woodenrobot.me/2018/01/30/取消-SSH-私钥密码/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WoodenRobot">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://7xraal.com1.z0.glb.clouddn.com/avatarmorty.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WoodenRobot's Blog">
     </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">取消 SSH 私钥密码</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-30T11:54:52+08:00">
+                2018-01-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/30/取消-SSH-私钥密码/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/30/取消-SSH-私钥密码/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
-      
 
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>生成 SSH 秘钥时，会让你输入私钥的密码，直接回车则意为不设密码，如果设置了私钥密码，每次使用 SSH 进行操作都需要输入私钥密码。虽然这样增加了安全性，但是使用 SSH 的目的很多时候就是想更加方便，跳过输入账号密码这一步。只要保存好自己的私钥不泄露，一般不设私钥密码是没有太大的风险的。如果已经生成带密码的私钥，又想取消密码可以按下列两种方法操作。<br><a id="more"></a></p>
+<h1 id="取消-SSH-私钥密码"><a href="#取消-SSH-私钥密码" class="headerlink" title="取消 SSH 私钥密码"></a>取消 SSH 私钥密码</h1><h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><p>使用 ssh-keygen 命令更改 SSH Key 密码，进入秘钥所在到的文件夹内（一般为<code>~/.ssh</code>）,执行下列命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -f id_rsa -p</div></pre></td></tr></table></figure></p>
+<p>执行命令后，会让你先输入旧密码，然后输入两次新密码，新密码为空则为没有密码。</p>
+<h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><ol>
+<li><p>使用openssl命令去掉私钥的密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">openssl rsa -in ~/.ssh/id_rsa -out ~/.ssh/id_rsa_new</div></pre></td></tr></table></figure>
+</li>
+<li><p>备份旧私钥</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mv ~/.ssh/id_rsa ~/.ssh/id_rsa.backup</div></pre></td></tr></table></figure>
+<ol>
+<li><p>使用新私钥</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mv ~/.ssh/id_rsa_new ~/.ssh/id_rsa</div></pre></td></tr></table></figure>
+</li>
+<li><p>设置权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod 600 ~/.ssh/id_rsa</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>推荐使用方法一来取消 SSH 私钥密码。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><a href="https://www.cyberciti.biz/faq/howto-ssh-changing-passphrase/" target="_blank" rel="external">OpenSSH Change a Passphrase With ssh-keygen command</a></li>
+<li><a href="http://www.au92.com/archives/remove-passphrase-password-from-private-rsa-key.html" target="_blank" rel="external">SSH私钥取消密码（passphrase ）</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
       
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果觉得对您有所帮助，欢迎赞助瓶饮料支持一下！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://7xraal.com1.z0.glb.clouddn.com/%E6%89%93%E8%B5%8FIMG_20161001_162637.jpg" alt="WoodenRobot Alipay"/>
+          <p>支付宝打赏</p>
         </div>
       
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      WoodenRobot
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://woodenrobot.me/2018/01/30/取消-SSH-私钥密码/" title="取消 SSH 私钥密码">http://woodenrobot.me/2018/01/30/取消-SSH-私钥密码/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ssh/" rel="tag"># ssh</a>
+          
+        </div>
       
 
       
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
         
-            <a class="post-title-link" href="/2017/10/17/Python-Splinter-实现浏览器自动化操作入门指南/" itemprop="url">
-              
-                <span itemprop="name">Python + Splinter 实现浏览器自动化操作入门指南</span>
-              
-            </a>
-        
-      </h2>
+      
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-10-17T20:02:34+08:00"
-              content="2017-10-17" >
-          10-17
-        </time>
-      </div>
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/01/回归正轨的-2017-年/" rel="next" title="回归正轨的 2017 年">
+                <i class="fa fa-chevron-left"></i> 回归正轨的 2017 年
+              </a>
+            
+          </div>
 
-    </header>
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
 
-    
-
-  </section>
-
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -386,6 +563,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="hypercomments_widget"></div>
+    
+  </div>
+
 
         </div>
         
@@ -405,8 +588,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://7xraal.com1.z0.glb.clouddn.com/avatarmorty.png"
@@ -540,6 +732,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#取消-SSH-私钥密码"><span class="nav-number">2.</span> <span class="nav-text">取消 SSH 私钥密码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#方法一"><span class="nav-number">2.1.</span> <span class="nav-text">方法一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法二"><span class="nav-number">2.2.</span> <span class="nav-text">方法二</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -675,11 +883,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
 
 
   
@@ -704,6 +910,8 @@
 
 		_hcwp.push({widget:"Bloggerstream", widget_id: 94907, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
+		
+		_hcwp.push({widget:"Stream", widget_id: 94907, xid: "2018/01/30/取消-SSH-私钥密码/"});
 		
 
 		(function() {
