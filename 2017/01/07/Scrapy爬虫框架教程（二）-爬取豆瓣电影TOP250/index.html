@@ -105,7 +105,7 @@
 <meta property="og:image" content="http://7xrwo7.com1.z0.glb.clouddn.com/Scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89--%20%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1TOP250QQ%E5%9B%BE%E7%89%8720170107183811.png">
 <meta property="og:image" content="http://7xrwo7.com1.z0.glb.clouddn.com/Scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89--%20%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1TOP250QQ%E5%9B%BE%E7%89%8720170107185053.png">
 <meta property="og:image" content="http://7xrwo7.com1.z0.glb.clouddn.com/Scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89--%20%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1TOP250QQ%E5%9B%BE%E7%89%8720170107185753.png">
-<meta property="og:updated_time" content="2017-07-15T16:09:41.000Z">
+<meta property="og:updated_time" content="2018-02-24T14:23:19.663Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Scrapy爬虫框架教程（二）-- 爬取豆瓣电影TOP250">
 <meta name="twitter:description" content="前言经过上一篇教程我们已经大致了解了Scrapy的基本情况，并写了一个简单的小demo。这次我会以爬取豆瓣电影TOP250为例进一步为大家讲解一个完整爬虫的流程。">
@@ -448,7 +448,7 @@
 <li>浏览器：Chrome</li>
 <li>爬虫框架：Scrapy 1.2.1</li>
 </ol>
-<h1 id="教程正文"><a href="#教程正文" class="headerlink" title="教程正文"></a>教程正文</h1><h2 id="观察页面结构"><a href="#观察页面结构" class="headerlink" title="观察页面结构"></a>观察页面结构</h2><p>首先我们打开<a href="">豆瓣电影TOP250</a>的页面<br><img src="http://7xrwo7.com1.z0.glb.clouddn.com/Scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89--%20%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1TOP250QQ%E5%9B%BE%E7%89%8720170107172029.png" alt=""><br>通过观察页面决定让我们的爬虫获取每一部电影的排名、电影名称、评分和评分的人数。</p>
+<h1 id="教程正文"><a href="#教程正文" class="headerlink" title="教程正文"></a>教程正文</h1><h2 id="观察页面结构"><a href="#观察页面结构" class="headerlink" title="观察页面结构"></a>观察页面结构</h2><p>首先我们打开<a href="https://movie.douban.com/top250" target="_blank" rel="external">豆瓣电影TOP250</a>的页面<br><img src="http://7xrwo7.com1.z0.glb.clouddn.com/Scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89--%20%E7%88%AC%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1TOP250QQ%E5%9B%BE%E7%89%8720170107172029.png" alt=""><br>通过观察页面决定让我们的爬虫获取每一部电影的排名、电影名称、评分和评分的人数。</p>
 <h2 id="声明Item"><a href="#声明Item" class="headerlink" title="声明Item"></a>声明Item</h2><p>什么是Items呢？<a href="http://scrapy-chs.readthedocs.io/zh_CN/1.0/topics/items.html" target="_blank" rel="external">官方文档Items定义</a>如下：</p>
 <blockquote>
 <p>Items</p>
