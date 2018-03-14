@@ -92,18 +92,18 @@
 
 
 
-<meta name="description" content="前言转行做python程序员已经有三个月了，这三个用Scrapy爬虫框架写了两百多个爬虫，不能说精通了Scrapy，但是已经对Scrapy有了一定的熟悉。准备写一个系列的Scrapy爬虫教程，一方面通过输出巩固和梳理自己这段时间学到的知识，另一方面当初受惠于别人的博客教程，我也想通过这个系列教程帮助一些想要学习Scrapy的人。">
+<meta name="description" content="前言转行做python程序员已经有三个月了，这三个月用Scrapy爬虫框架写了两百多个爬虫，不能说精通了Scrapy，但是已经对Scrapy有了一定的熟悉。准备写一个系列的Scrapy爬虫教程，一方面通过输出巩固和梳理自己这段时间学到的知识，另一方面当初受惠于别人的博客教程，我也想通过这个系列教程帮助一些想要学习Scrapy的人。">
 <meta name="keywords" content="Python,爬虫,Scrapy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="scrapy爬虫框架教程（一）-- Scrapy入门">
 <meta property="og:url" content="http://woodenrobot.me/2017/01/01/scrapy爬虫框架教程（一）-Scrapy入门/index.html">
 <meta property="og:site_name" content="WoodenRobot&#39;s Blog">
-<meta property="og:description" content="前言转行做python程序员已经有三个月了，这三个用Scrapy爬虫框架写了两百多个爬虫，不能说精通了Scrapy，但是已经对Scrapy有了一定的熟悉。准备写一个系列的Scrapy爬虫教程，一方面通过输出巩固和梳理自己这段时间学到的知识，另一方面当初受惠于别人的博客教程，我也想通过这个系列教程帮助一些想要学习Scrapy的人。">
+<meta property="og:description" content="前言转行做python程序员已经有三个月了，这三个月用Scrapy爬虫框架写了两百多个爬虫，不能说精通了Scrapy，但是已经对Scrapy有了一定的熟悉。准备写一个系列的Scrapy爬虫教程，一方面通过输出巩固和梳理自己这段时间学到的知识，另一方面当初受惠于别人的博客教程，我也想通过这个系列教程帮助一些想要学习Scrapy的人。">
 <meta property="og:image" content="http://7xraal.com1.z0.glb.clouddn.com/Scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89--%20Scrapy%E5%85%A5%E9%97%A8scrapy_architecture.png">
-<meta property="og:updated_time" content="2017-01-01T10:44:09.000Z">
+<meta property="og:updated_time" content="2018-03-14T06:58:09.641Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="scrapy爬虫框架教程（一）-- Scrapy入门">
-<meta name="twitter:description" content="前言转行做python程序员已经有三个月了，这三个用Scrapy爬虫框架写了两百多个爬虫，不能说精通了Scrapy，但是已经对Scrapy有了一定的熟悉。准备写一个系列的Scrapy爬虫教程，一方面通过输出巩固和梳理自己这段时间学到的知识，另一方面当初受惠于别人的博客教程，我也想通过这个系列教程帮助一些想要学习Scrapy的人。">
+<meta name="twitter:description" content="前言转行做python程序员已经有三个月了，这三个月用Scrapy爬虫框架写了两百多个爬虫，不能说精通了Scrapy，但是已经对Scrapy有了一定的熟悉。准备写一个系列的Scrapy爬虫教程，一方面通过输出巩固和梳理自己这段时间学到的知识，另一方面当初受惠于别人的博客教程，我也想通过这个系列教程帮助一些想要学习Scrapy的人。">
 <meta name="twitter:image" content="http://7xraal.com1.z0.glb.clouddn.com/Scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89--%20Scrapy%E5%85%A5%E9%97%A8scrapy_architecture.png">
 
 
@@ -436,7 +436,7 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>转行做python程序员已经有三个月了，这三个用Scrapy爬虫框架写了两百多个爬虫，不能说精通了Scrapy，但是已经对Scrapy有了一定的熟悉。准备写一个系列的Scrapy爬虫教程，一方面通过输出巩固和梳理自己这段时间学到的知识，另一方面当初受惠于别人的博客教程，我也想通过这个系列教程帮助一些想要学习Scrapy的人。<br><a id="more"></a></p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>转行做python程序员已经有三个月了，这三个月用Scrapy爬虫框架写了两百多个爬虫，不能说精通了Scrapy，但是已经对Scrapy有了一定的熟悉。准备写一个系列的Scrapy爬虫教程，一方面通过输出巩固和梳理自己这段时间学到的知识，另一方面当初受惠于别人的博客教程，我也想通过这个系列教程帮助一些想要学习Scrapy的人。<br><a id="more"></a></p>
 <h1 id="Scrapy简介"><a href="#Scrapy简介" class="headerlink" title="Scrapy简介"></a>Scrapy简介</h1><blockquote>
 <p>Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。 可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。<br>其最初是为了 页面抓取 (更确切来说, 网络抓取 )所设计的， 也可以应用在获取API所返回的数据(例如 Amazon Associates Web Services ) 或者通用的网络爬虫。  </p>
 </blockquote>
@@ -793,6 +793,10 @@
               
                 <li class="links-of-blogroll-item">
                   <a href="https://www.kawabangga.com/" title="卡瓦邦噶！" target="_blank">卡瓦邦噶！</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://xiaozhou.net/" title="Timothy" target="_blank">Timothy</a>
                 </li>
               
             </ul>
