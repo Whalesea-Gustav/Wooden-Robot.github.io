@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://woodenrobot.me/2017/11/08/virtualenvwrapper-pyenv-%E6%89%93%E9%80%A0%E5%A4%9A%E7%89%88%E6%9C%AC-Python-%E7%8E%AF%E5%A2%83/</loc>
+    
+    <lastmod>2018-07-12T06:31:17.108Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://woodenrobot.me/2018/06/18/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%BF%AB%E6%8D%B7%E9%94%AE/</loc>
     
     <lastmod>2018-06-18T04:07:05.316Z</lastmod>
@@ -75,13 +82,6 @@
     <loc>http://woodenrobot.me/2017/11/16/%E6%87%92%E4%BA%BA%E7%A5%9E%E5%99%A8-autoenv/</loc>
     
     <lastmod>2017-11-16T04:56:08.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://woodenrobot.me/2017/11/08/virtualenvwrapper-pyenv-%E6%89%93%E9%80%A0%E5%A4%9A%E7%89%88%E6%9C%AC-Python-%E7%8E%AF%E5%A2%83/</loc>
-    
-    <lastmod>2017-11-08T09:37:32.000Z</lastmod>
     
   </url>
   
