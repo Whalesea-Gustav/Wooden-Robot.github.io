@@ -4,6 +4,30 @@
 
     
   <url>
+    <loc>http://woodenrobot.me/2018/08/11/Ubuntu-%E6%9E%B6%E8%AE%BE-OpenVPN-%E5%AE%9E%E7%8E%B0%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/</loc>
+    <lastmod>2018-08-11T03:49:42.204Z</lastmod>
+    <data>
+        <display>
+        <title>Ubuntu 架设 OpenVPN 实现内网穿透</title>
+        <pubTime>2018-08-11T03:47:52.000Z</pubTime>
+        
+        <tag>Ubuntu</tag>
+         
+        <tag>OpenVPN</tag>
+         
+        <tag>内网穿透</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://woodenrobot.me/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://woodenrobot.me/2018/07/23/%E6%9C%8D%E5%8A%A1%E5%99%A8-authorized-keys-%E6%B7%BB%E5%8A%A0%E5%85%AC%E9%92%A5%E5%90%8E%E7%99%BB%E5%BD%95%E4%BB%8D%E9%9C%80%E8%A6%81%E5%AF%86%E7%A0%81/</loc>
     <lastmod>2018-07-23T11:52:55.870Z</lastmod>
     <data>
@@ -537,9 +561,9 @@
         <title>Ubuntu14.04 phpMyAdmin的安装及配置</title>
         <pubTime>2016-07-15T09:43:07.000Z</pubTime>
         
-        <tag>MySQL</tag>
-         
         <tag>Ubuntu</tag>
+         
+        <tag>MySQL</tag>
          
          
            
