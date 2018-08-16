@@ -4,8 +4,30 @@
 
     
   <url>
+    <loc>http://woodenrobot.me/2018/08/16/Docker-%E5%8D%A0%E6%BB%A1-Linux-%E7%B3%BB%E7%BB%9F%E7%9B%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</loc>
+    <lastmod>2018-08-16T12:26:44.783Z</lastmod>
+    <data>
+        <display>
+        <title>Docker 占满 Linux 系统盘解决方案</title>
+        <pubTime>2018-08-16T12:24:26.000Z</pubTime>
+        
+        <tag>Linux</tag>
+         
+        <tag>Docker</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://woodenrobot.me/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://woodenrobot.me/2018/08/11/Ubuntu-%E6%9E%B6%E8%AE%BE-OpenVPN-%E5%AE%9E%E7%8E%B0%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/</loc>
-    <lastmod>2018-08-11T03:49:42.204Z</lastmod>
+    <lastmod>2018-08-11T04:05:20.513Z</lastmod>
     <data>
         <display>
         <title>Ubuntu 架设 OpenVPN 实现内网穿透</title>

@@ -99,7 +99,7 @@
 <meta property="og:url" content="http://woodenrobot.me/2018/08/11/Ubuntu-架设-OpenVPN-实现内网穿透/index.html">
 <meta property="og:site_name" content="WoodenRobot&#39;s Blog">
 <meta property="og:description" content="前言家里的网络因为没有公网 IP，有时候想要连接到家里的树莓派或者电脑就无法实现。这个时候可以采用内网穿透的方法远程连接家中的机器，内网穿透的方案有很多，下面介绍一种采用 OpenVPN 实现内网穿透的方案。">
-<meta property="og:updated_time" content="2018-08-11T03:49:42.204Z">
+<meta property="og:updated_time" content="2018-08-11T04:05:20.513Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu 架设 OpenVPN 实现内网穿透">
 <meta name="twitter:description" content="前言家里的网络因为没有公网 IP，有时候想要连接到家里的树莓派或者电脑就无法实现。这个时候可以采用内网穿透的方法远程连接家中的机器，内网穿透的方案有很多，下面介绍一种采用 OpenVPN 实现内网穿透的方案。">
@@ -479,7 +479,7 @@
 <p>去掉 <code>user</code> 和 <code>group</code> 前的注释：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># Downgrade privileges after initialization (non-Windows only)</div><div class="line">user nobody</div><div class="line">group nogroup</div></pre></td></tr></table></figure></p>
 <p>找到 ca/cert/key，注释掉：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># SSL/TLS parms.</div><div class="line"># See the server config file for more</div><div class="line"># description.  It&apos;s best to use</div><div class="line"># a separate .crt/.key file pair</div><div class="line"># for each client.  A single ca</div><div class="line"># file can be used for all clients.</div><div class="line">#ca ca.crt</div><div class="line">#cert client.crt</div><div class="line">#key client.key</div></pre></td></tr></table></figure></p>
 <p>最后在文件末新增一行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">key-direction 1</div></pre></td></tr></table></figure></p>
-<p>保存退出文件。<br>去掉注释后的完整配置为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">client</div><div class="line"></div><div class="line">dev tun</div><div class="line"></div><div class="line">proto tcp</div><div class="line"></div><div class="line">remote remote-id 1194</div><div class="line"></div><div class="line">resolv-retry infinite</div><div class="line"></div><div class="line">nobind</div><div class="line"></div><div class="line">user nobody</div><div class="line">group nogroup</div><div class="line"></div><div class="line">persist-key</div><div class="line">persist-tun</div><div class="line"></div><div class="line">remote-cert-tls server</div><div class="line"></div><div class="line">comp-lzo</div><div class="line"></div><div class="line">verb 3</div><div class="line"></div><div class="line">key-direction 1</div></pre></td></tr></table></figure></p>
+<p>保存退出文件。<br>去掉注释后的完整配置为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">client</div><div class="line"></div><div class="line">dev tun</div><div class="line"></div><div class="line">proto tcp</div><div class="line"></div><div class="line">remote server_IP_address 1194</div><div class="line"></div><div class="line">resolv-retry infinite</div><div class="line"></div><div class="line">nobind</div><div class="line"></div><div class="line">user nobody</div><div class="line">group nogroup</div><div class="line"></div><div class="line">persist-key</div><div class="line">persist-tun</div><div class="line"></div><div class="line">remote-cert-tls server</div><div class="line"></div><div class="line">comp-lzo</div><div class="line"></div><div class="line">verb 3</div><div class="line"></div><div class="line">key-direction 1</div></pre></td></tr></table></figure></p>
 <h2 id="创建配置生成脚本"><a href="#创建配置生成脚本" class="headerlink" title="创建配置生成脚本"></a>创建配置生成脚本</h2><p>新建 ~/client-configs/make_config.sh 文件，复制如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line"># First argument: Client identifier</div><div class="line">KEY_DIR=~/openvpn-ca/keys</div><div class="line">OUTPUT_DIR=~/client-configs/files</div><div class="line">BASE_CONFIG=~/client-configs/base.conf</div><div class="line">cat $&#123;BASE_CONFIG&#125; \</div><div class="line">    &lt;(echo -e &apos;&lt;ca&gt;&apos;) \</div><div class="line">    $&#123;KEY_DIR&#125;/ca.crt \</div><div class="line">    &lt;(echo -e &apos;&lt;/ca&gt;\n&lt;cert&gt;&apos;) \</div><div class="line">    $&#123;KEY_DIR&#125;/$&#123;1&#125;.crt \</div><div class="line">    &lt;(echo -e &apos;&lt;/cert&gt;\n&lt;key&gt;&apos;) \</div><div class="line">    $&#123;KEY_DIR&#125;/$&#123;1&#125;.key \</div><div class="line">    &lt;(echo -e &apos;&lt;/key&gt;\n&lt;tls-auth&gt;&apos;) \</div><div class="line">    $&#123;KEY_DIR&#125;/ta.key \</div><div class="line">    &lt;(echo -e &apos;&lt;/tls-auth&gt;&apos;) \</div><div class="line">    &gt; $&#123;OUTPUT_DIR&#125;/$&#123;1&#125;.ovpn</div></pre></td></tr></table></figure></p>
 <p>保存并赋予执行权限：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ chmod 700 ~/client-configs/make_config.sh</div></pre></td></tr></table></figure></p>
 <h2 id="生成客户端配置"><a href="#生成客户端配置" class="headerlink" title="生成客户端配置"></a>生成客户端配置</h2><p>执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cd ~/client-configs</div><div class="line">$ ./make_config.sh client-woodenrobot</div></pre></td></tr></table></figure></p>
@@ -586,6 +586,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/08/16/Docker-占满-Linux-系统盘解决方案/" rel="prev" title="Docker 占满 Linux 系统盘解决方案">
+                Docker 占满 Linux 系统盘解决方案 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -663,7 +667,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -685,7 +689,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

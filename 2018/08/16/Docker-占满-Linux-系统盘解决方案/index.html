@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Python," />
+  <meta name="keywords" content="Linux,Docker," />
 
 
 
@@ -92,22 +92,17 @@
 
 
 
-<meta name="description" content="前言每次去不同的项目下运行程序都要更改相对应的 Python 环境，那么有什么办法可以省去这繁琐的一步吗？答案肯定是有的，Kenneth Reitz 已经为我们实现了—— autoenv。这个人名你可能没见过，但是说起他的另一个身份你肯定知道—— Requests 库的作者。">
-<meta name="keywords" content="Python">
+<meta name="description" content="前言一般情况下我们通过命令在 Linux 上安装 Docker，Docker 会将文件默认储存在 /var/lib/docker 目录下，时间久了就会占用很大空间，最后导致系统盘被占满。此时需要将文件转移到数据盘上并做一个软连接。">
+<meta name="keywords" content="Linux,Docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="懒人神器 autoenv">
-<meta property="og:url" content="http://woodenrobot.me/2017/11/16/懒人神器-autoenv/index.html">
+<meta property="og:title" content="Docker 占满 Linux 系统盘解决方案">
+<meta property="og:url" content="http://woodenrobot.me/2018/08/16/Docker-占满-Linux-系统盘解决方案/index.html">
 <meta property="og:site_name" content="WoodenRobot&#39;s Blog">
-<meta property="og:description" content="前言每次去不同的项目下运行程序都要更改相对应的 Python 环境，那么有什么办法可以省去这繁琐的一步吗？答案肯定是有的，Kenneth Reitz 已经为我们实现了—— autoenv。这个人名你可能没见过，但是说起他的另一个身份你肯定知道—— Requests 库的作者。">
-<meta property="og:image" content="https://camo.githubusercontent.com/92a0e6c8cfa3aae0e70f442fc915263ee59bf5bf/687474703a2f2f6d656469612e74756d626c722e636f6d2f74756d626c725f6c74757a6a766251364c31717a677078392e676966">
-<meta property="og:image" content="http://7xraal.com1.z0.glb.clouddn.com/autoenvrequests2.jpg">
-<meta property="og:image" content="http://7xraal.com1.z0.glb.clouddn.com/autoenvrequests3.jpg">
-<meta property="og:image" content="http://7xraal.com1.z0.glb.clouddn.com/autoenvrequests.jpg">
-<meta property="og:updated_time" content="2017-11-16T04:56:08.000Z">
+<meta property="og:description" content="前言一般情况下我们通过命令在 Linux 上安装 Docker，Docker 会将文件默认储存在 /var/lib/docker 目录下，时间久了就会占用很大空间，最后导致系统盘被占满。此时需要将文件转移到数据盘上并做一个软连接。">
+<meta property="og:updated_time" content="2018-08-16T12:26:44.783Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="懒人神器 autoenv">
-<meta name="twitter:description" content="前言每次去不同的项目下运行程序都要更改相对应的 Python 环境，那么有什么办法可以省去这繁琐的一步吗？答案肯定是有的，Kenneth Reitz 已经为我们实现了—— autoenv。这个人名你可能没见过，但是说起他的另一个身份你肯定知道—— Requests 库的作者。">
-<meta name="twitter:image" content="https://camo.githubusercontent.com/92a0e6c8cfa3aae0e70f442fc915263ee59bf5bf/687474703a2f2f6d656469612e74756d626c722e636f6d2f74756d626c725f6c74757a6a766251364c31717a677078392e676966">
+<meta name="twitter:title" content="Docker 占满 Linux 系统盘解决方案">
+<meta name="twitter:description" content="前言一般情况下我们通过命令在 Linux 上安装 Docker，Docker 会将文件默认储存在 /var/lib/docker 目录下，时间久了就会占用很大空间，最后导致系统盘被占满。此时需要将文件转移到数据盘上并做一个软连接。">
 
 
 
@@ -135,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://woodenrobot.me/2017/11/16/懒人神器-autoenv/"/>
+  <link rel="canonical" href="http://woodenrobot.me/2018/08/16/Docker-占满-Linux-系统盘解决方案/"/>
 
 
 
 
 
-  <title>懒人神器 autoenv | WoodenRobot's Blog</title>
+  <title>Docker 占满 Linux 系统盘解决方案 | WoodenRobot's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -336,7 +331,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://woodenrobot.me/2017/11/16/懒人神器-autoenv/">
+    <link itemprop="mainEntityOfPage" href="http://woodenrobot.me/2018/08/16/Docker-占满-Linux-系统盘解决方案/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WoodenRobot">
@@ -353,7 +348,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">懒人神器 autoenv</h1>
+          <h1 class="post-title" itemprop="name headline">Docker 占满 Linux 系统盘解决方案</h1>
         
 
         <div class="post-meta">
@@ -365,8 +360,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-16T12:55:07+08:00">
-                2017-11-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-16T20:24:26+08:00">
+                2018-08-16
               </time>
             
 
@@ -406,9 +401,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/11/16/懒人神器-autoenv/#comments" itemprop="discussionUrl">
+                <a href="/2018/08/16/Docker-占满-Linux-系统盘解决方案/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/11/16/懒人神器-autoenv/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/08/16/Docker-占满-Linux-系统盘解决方案/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -438,22 +433,39 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>每次去不同的项目下运行程序都要更改相对应的 Python 环境，那么有什么办法可以省去这繁琐的一步吗？答案肯定是有的，Kenneth Reitz 已经为我们实现了—— autoenv。这个人名你可能没见过，但是说起他的另一个身份你肯定知道—— <a href="http://docs.python-requests.org/en/master/" target="_blank" rel="external">Requests</a> 库的作者。<br><a id="more"></a></p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="Mac-OS-X-使用-Homebrew-安装"><a href="#Mac-OS-X-使用-Homebrew-安装" class="headerlink" title="Mac OS X 使用 Homebrew 安装"></a>Mac OS X 使用 Homebrew 安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ brew install autoenv</div><div class="line"># bash 使用这条命令</div><div class="line">$ echo &quot;source $(brew --prefix autoenv)/activate.sh&quot; &gt;&gt; ~/.bash_profile</div><div class="line"># zsh 使用这条命令</div><div class="line">$ echo &quot;source $(brew --prefix autoenv)/activate.sh&quot; &gt;&gt; ~/.zshrc</div></pre></td></tr></table></figure>
-<h2 id="使用-pip-安装"><a href="#使用-pip-安装" class="headerlink" title="使用 pip 安装"></a>使用 pip 安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ pip install autoenv</div><div class="line"># bash 使用这条命令</div><div class="line">$ echo &quot;source `which activate.sh`&quot; &gt;&gt; ~/.bashrc</div><div class="line"># zsh 使用这条命令</div><div class="line">$ echo &quot;source `which activate.sh`&quot; &gt;&gt; ~/.zshrc</div></pre></td></tr></table></figure>
-<h2 id="使用-git-安装"><a href="#使用-git-安装" class="headerlink" title="使用 git 安装"></a>使用 git 安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ git clone git://github.com/kennethreitz/autoenv.git ~/.autoenv</div><div class="line"># bash 使用这条命令</div><div class="line">$ echo &apos;source ~/.autoenv/activate.sh&apos; &gt;&gt; ~/.bashrc</div><div class="line"># zsh 使用这条命令</div><div class="line">$ echo &apos;source ~/.autoenv/activate.sh&apos; &gt;&gt; ~/.zshrc</div></pre></td></tr></table></figure>
-<p>安装完成后重新打开 shell 生效。</p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="virtualenvwrapper"><a href="#virtualenvwrapper" class="headerlink" title="virtualenvwrapper"></a>virtualenvwrapper</h2><p>通过下列命令在项目所在文件夹 project 内新建<code>.env</code>文件，并在改文件内写入进入项目环境的命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo &quot;workon test&quot; &gt; project/.env</div></pre></td></tr></table></figure>
-<p>上述命令以在 project (项目文件夹)内进入 virtualenvwrapper 创建的 test 虚拟环境为例，如何使用 virtualenvwrapper 可参考<a href="https://zhuanlan.zhihu.com/p/30859003" target="_blank" rel="external">virtualenvwrapper + pyenv 打造多版本 Python 环境</a>。  </p>
-<h2 id="virtualenv"><a href="#virtualenv" class="headerlink" title="virtualenv"></a>virtualenv</h2><p>如果你使用的是 virtualenv 那么命令应该是这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo &quot;source venv/bin/activate&quot; &gt; project/.env</div></pre></td></tr></table></figure></p>
-<p>上述命令以在 project (项目文件夹)内进入 virtualenv 创建的位于 project (项目文件夹)内的 venv 环境为例。<br><img src="https://camo.githubusercontent.com/92a0e6c8cfa3aae0e70f442fc915263ee59bf5bf/687474703a2f2f6d656469612e74756d626c722e636f6d2f74756d626c725f6c74757a6a766251364c31717a677078392e676966" alt=""><br><code>cd project</code>进入项目文件夹尽情享受 autoenv 带来的便利吧！</p>
-<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>最后献上 Kenneth Reitz 大神的美照！<br><img src="http://7xraal.com1.z0.glb.clouddn.com/autoenvrequests2.jpg" alt=""></p>
-<p>前<br>方<br>高<br>能<br>！<br>！<br>！<br>！<br>！<br>！<br>！<br>！<br>！<br>！<br>！<br>减<br>肥<br>后<br>是<br>这<br>样<br>的<br>！<br>！<br>！<br>！<br>！<br>！<br>！<br>！<br>！<br>！<br>！<br><img src="http://7xraal.com1.z0.glb.clouddn.com/autoenvrequests3.jpg" alt=""><br><img src="http://7xraal.com1.z0.glb.clouddn.com/autoenvrequests.jpg" alt=""></p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
-<li><a href="https://github.com/kennethreitz/autoenv" target="_blank" rel="external">autoenv</a></li>
-<li><a href="https://www.kennethreitz.org/" target="_blank" rel="external">Kenneth Reitz</a></li>
-</ul>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一般情况下我们通过命令在 Linux 上安装 Docker，Docker 会将文件默认储存在 <code>/var/lib/docker</code> 目录下，时间久了就会占用很大空间，最后导致系统盘被占满。此时需要将文件转移到数据盘上并做一个软连接。</p>
+<hr>
+<a id="more"></a>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ol>
+<li><p>首先进入 <code>root</code> 用户：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo su</div></pre></td></tr></table></figure>
+</li>
+<li><p>关闭 Docker 服务：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ service docker stop</div></pre></td></tr></table></figure>
+</li>
+<li><p>复制 <code>/var/lib/docker</code> 文件夹到系统盘：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cp -pr /var/lib/docker /mnt/data</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>注：此处 <code>/mnt/data</code> 为系统盘路径</strong></p>
+<ol>
+<li><p>为了以防万一首先备份 <code>/var/lib/docker</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mv /var/lib/docker /var/lib/docker.bak</div></pre></td></tr></table></figure>
+</li>
+<li><p>建立软连接：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ln -s /mnt/data/docker /var/lib/docker</div></pre></td></tr></table></figure>
+</li>
+<li><p>启动 Docker：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ service docker start</div></pre></td></tr></table></figure>
+</li>
+<li><p>启动 Docker 中的容器:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ docker ps 查看正在运行的容器</div><div class="line">$ docker ps -a 查看所有容器</div><div class="line">$ docker start CONTAINER ID/NAMES</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>根据容器 ID 或者名称启动容器。</p>
+<ol>
+<li>检测容器中的程序是否正常运行，正常运行后可将 <code>/var/lib/docker.bak</code> 备份文件删除，解决系统盘被占满的问题。</li>
+</ol>
 
       
     </div>
@@ -503,7 +515,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://woodenrobot.me/2017/11/16/懒人神器-autoenv/" title="懒人神器 autoenv">http://woodenrobot.me/2017/11/16/懒人神器-autoenv/</a>
+      <a href="http://woodenrobot.me/2018/08/16/Docker-占满-Linux-系统盘解决方案/" title="Docker 占满 Linux 系统盘解决方案">http://woodenrobot.me/2018/08/16/Docker-占满-Linux-系统盘解决方案/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -519,7 +531,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Python/" rel="tag"># Python</a>
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/Docker/" rel="tag"># Docker</a>
           
         </div>
       
@@ -532,8 +546,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/08/virtualenvwrapper-pyenv-打造多版本-Python-环境/" rel="next" title="virtualenvwrapper + pyenv 打造多版本 Python 环境">
-                <i class="fa fa-chevron-left"></i> virtualenvwrapper + pyenv 打造多版本 Python 环境
+              <a href="/2018/08/11/Ubuntu-架设-OpenVPN-实现内网穿透/" rel="next" title="Ubuntu 架设 OpenVPN 实现内网穿透">
+                <i class="fa fa-chevron-left"></i> Ubuntu 架设 OpenVPN 实现内网穿透
               </a>
             
           </div>
@@ -541,10 +555,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/01/回归正轨的-2017-年/" rel="prev" title="回归正轨的 2017 年">
-                回归正轨的 2017 年 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -768,7 +778,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mac-OS-X-使用-Homebrew-安装"><span class="nav-number">2.1.</span> <span class="nav-text">Mac OS X 使用 Homebrew 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-pip-安装"><span class="nav-number">2.2.</span> <span class="nav-text">使用 pip 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-git-安装"><span class="nav-number">2.3.</span> <span class="nav-text">使用 git 安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#virtualenvwrapper"><span class="nav-number">3.1.</span> <span class="nav-text">virtualenvwrapper</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#virtualenv"><span class="nav-number">3.2.</span> <span class="nav-text">virtualenv</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结语"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解决方案"><span class="nav-number">2.</span> <span class="nav-text">解决方案</span></a></li></ol></div>
             
 
           </div>
@@ -933,9 +943,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://woodenrobot.me/2017/11/16/懒人神器-autoenv/';
-          this.page.identifier = '2017/11/16/懒人神器-autoenv/';
-          this.page.title = '懒人神器 autoenv';
+          this.page.url = 'http://woodenrobot.me/2018/08/16/Docker-占满-Linux-系统盘解决方案/';
+          this.page.identifier = '2018/08/16/Docker-占满-Linux-系统盘解决方案/';
+          this.page.title = 'Docker 占满 Linux 系统盘解决方案';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://woodenrobot.disqus.com/embed.js';
