@@ -99,7 +99,7 @@
 <meta property="og:url" content="http://woodenrobot.me/2018/08/16/Docker-占满-Linux-系统盘解决方案/index.html">
 <meta property="og:site_name" content="WoodenRobot&#39;s Blog">
 <meta property="og:description" content="前言一般情况下我们通过命令在 Linux 上安装 Docker，Docker 会将文件默认储存在 /var/lib/docker 目录下，时间久了就会占用很大空间，最后导致系统盘被占满。此时需要将文件转移到数据盘上并做一个软连接。">
-<meta property="og:updated_time" content="2018-08-16T12:26:44.783Z">
+<meta property="og:updated_time" content="2018-08-20T02:09:05.983Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker 占满 Linux 系统盘解决方案">
 <meta name="twitter:description" content="前言一般情况下我们通过命令在 Linux 上安装 Docker，Docker 会将文件默认储存在 /var/lib/docker 目录下，时间久了就会占用很大空间，最后导致系统盘被占满。此时需要将文件转移到数据盘上并做一个软连接。">
@@ -436,36 +436,15 @@
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一般情况下我们通过命令在 Linux 上安装 Docker，Docker 会将文件默认储存在 <code>/var/lib/docker</code> 目录下，时间久了就会占用很大空间，最后导致系统盘被占满。此时需要将文件转移到数据盘上并做一个软连接。</p>
 <hr>
 <a id="more"></a>
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ol>
-<li><p>首先进入 <code>root</code> 用户：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo su</div></pre></td></tr></table></figure>
-</li>
-<li><p>关闭 Docker 服务：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ service docker stop</div></pre></td></tr></table></figure>
-</li>
-<li><p>复制 <code>/var/lib/docker</code> 文件夹到系统盘：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cp -pr /var/lib/docker /mnt/data</div></pre></td></tr></table></figure>
-</li>
-</ol>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>1.首先进入 <code>root</code> 用户：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo su</div></pre></td></tr></table></figure></p>
+<p>2.关闭 Docker 服务：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ service docker stop</div></pre></td></tr></table></figure></p>
+<p>3.复制 <code>/var/lib/docker</code> 文件夹到系统盘：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cp -pr /var/lib/docker /mnt/data</div></pre></td></tr></table></figure></p>
 <p><strong>注：此处 <code>/mnt/data</code> 为系统盘路径</strong></p>
-<ol>
-<li><p>为了以防万一首先备份 <code>/var/lib/docker</code>:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mv /var/lib/docker /var/lib/docker.bak</div></pre></td></tr></table></figure>
-</li>
-<li><p>建立软连接：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ln -s /mnt/data/docker /var/lib/docker</div></pre></td></tr></table></figure>
-</li>
-<li><p>启动 Docker：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ service docker start</div></pre></td></tr></table></figure>
-</li>
-<li><p>启动 Docker 中的容器:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ docker ps 查看正在运行的容器</div><div class="line">$ docker ps -a 查看所有容器</div><div class="line">$ docker start CONTAINER ID/NAMES</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>根据容器 ID 或者名称启动容器。</p>
-<ol>
-<li>检测容器中的程序是否正常运行，正常运行后可将 <code>/var/lib/docker.bak</code> 备份文件删除，解决系统盘被占满的问题。</li>
-</ol>
+<p>4.为了以防万一首先备份 <code>/var/lib/docker</code>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ mv /var/lib/docker /var/lib/docker.bak</div></pre></td></tr></table></figure></p>
+<p>5.建立软连接：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ln -s /mnt/data/docker /var/lib/docker</div></pre></td></tr></table></figure></p>
+<p>6.启动 Docker：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ service docker start</div></pre></td></tr></table></figure></p>
+<p>7.启动 Docker 中的容器，根据容器 ID 或者名称启动容器:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ docker ps 查看正在运行的容器</div><div class="line">$ docker ps -a 查看所有容器</div><div class="line">$ docker start CONTAINER ID/NAMES</div></pre></td></tr></table></figure></p>
+<p>8.检测容器中的程序是否正常运行，正常运行后可将 <code>/var/lib/docker.bak</code> 备份文件删除，解决系统盘被占满的问题。</p>
 
       
     </div>
